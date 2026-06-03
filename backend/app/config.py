@@ -9,7 +9,11 @@ def _default_db_uri() -> str:
         return f"postgresql://{user}:{password}@{host}:{port}/{database}"
     return "sqlite:///microfinance_backend.db"
 class Config:
-    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", _default_db_uri())
+    SQLALCHEMY_ENGINE_OPTIONS = {
+    "connect_args": {
+        "sslmode": "require"
+    }
+}
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = os.getenv("JWT_SECRET", "dev-secret")
     JWT_EXP_SECONDS = int(os.getenv("JWT_EXP_SECONDS", "3600"))
