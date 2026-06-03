@@ -1,4 +1,5 @@
-﻿import os
+import os
+
 def _default_db_uri() -> str:
     host = os.getenv("POSTGRES_HOST")
     if host:
@@ -8,8 +9,16 @@ def _default_db_uri() -> str:
         port = os.getenv("POSTGRES_PORT", "5432")
         return f"postgresql://{user}:{password}@{host}:{port}/{database}"
     return "sqlite:///microfinance_backend.db"
+
+def _fix_db_url(url: str) -> str:
+    if url and "sslmode" in url:
+        url = url.split("?")[0]
+    return url
+
 class Config:
-    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", _default_db_uri())
+    _raw_url = os.getenv("DATABASE_URL", _default_db_uri())
+    SQLALCHEMY_DATABASE_URI = _fix_db_url(_raw_url)
+    SQLALCHEMY_ENGINE_OPTIONS = {"connect_args": {"sslmode": "require"}} if os.getenv("DATABASE_URL") else {}
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = os.getenv("JWT_SECRET", "dev-secret")
     JWT_EXP_SECONDS = int(os.getenv("JWT_EXP_SECONDS", "3600"))
