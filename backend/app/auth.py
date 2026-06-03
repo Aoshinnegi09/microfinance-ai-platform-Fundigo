@@ -1,11 +1,11 @@
-from datetime import datetime, timedelta, timezone
+﻿from datetime import datetime, timedelta, timezone
 from functools import wraps
 
 import jwt
 from flask import current_app, jsonify, request
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from .models import User, db
+from app.models import User, db
 
 
 def _issue_token(user_id: int) -> str:
@@ -64,3 +64,4 @@ def register_routes(app):
         if not user or not check_password_hash(user.password_hash, data.get("password", "")):
             return jsonify({"error": "Invalid credentials"}), 401
         return jsonify({"token": _issue_token(user.id), "user": {"id": user.id, "name": user.name, "kyc_status": user.kyc_status}})
+

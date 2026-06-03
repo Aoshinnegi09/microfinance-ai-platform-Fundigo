@@ -1,12 +1,12 @@
-import logging
+﻿import logging
 from pathlib import Path
 
 from flask import Flask, jsonify
 from flask_cors import CORS
 
-from . import auth, routes
-from .config import Config
-from .models import db
+from app import auth, routes
+from app.config import Config
+from app.models import db
 
 
 def create_app(config_class=Config):
@@ -41,3 +41,4 @@ app = create_app()
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+

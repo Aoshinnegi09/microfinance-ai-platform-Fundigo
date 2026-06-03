@@ -7,8 +7,8 @@ import requests
 from flask import current_app, jsonify, request
 from werkzeug.utils import secure_filename
 
-from .auth import auth_required
-from .models import Application, Document, KYCRecord, Loan, User, db
+from app.auth import auth_required
+from app.models import Application, Document, KYCRecord, Loan, User, db
 
 VOICE_SYSTEM_PROMPT = """You are a microfinance loan assistant for NovaPay in India. CRITICAL: Detect the language of the user input and respond ONLY in that same language. If user writes in English, respond in English. If Hindi, respond in Hindi. If Telugu, respond in Telugu. If Tamil, respond in Tamil. Respond ONLY with a JSON object (no markdown, no extra text): {\"understood_need\":\"brief summary\",\"business_type\":\"type\",\"suggested_loan_amount\":15000,\"estimated_monthly_income\":25000,\"risk_level\":\"low\",\"risk_reason\":\"brief reason\",\"tenure_months\":12,\"monthly_emi\":1349,\"total_payable\":16188,\"response_message\":\"warm message in SAME language as user input\",\"language_detected\":\"English\"}"""
 
@@ -136,5 +136,6 @@ def register_routes(app):
         db.session.add(document)
         db.session.commit()
         return jsonify({"document_id": document.id, "doc_type": doc_type, "filename": filename}), 201
+
 
 

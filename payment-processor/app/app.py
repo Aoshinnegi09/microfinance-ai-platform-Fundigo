@@ -1,11 +1,11 @@
-import os
+﻿import os
 import uuid
 from datetime import datetime, timedelta
 
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-from .models import Disbursement, Payment, db
+from models import Disbursement, Payment, db
 
 
 def _payment_db_uri() -> str:
@@ -136,3 +136,4 @@ app = create_app()
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5002)
+
