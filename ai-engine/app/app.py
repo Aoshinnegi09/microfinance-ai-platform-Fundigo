@@ -1,6 +1,6 @@
-from flask import Flask, jsonify, request
+﻿from flask import Flask, jsonify, request
 
-from .engine import engineer_features, fair_lending_check, train_model
+from engine import engineer_features, fair_lending_check, train_model
 
 
 def create_app():
@@ -60,3 +60,4 @@ app = create_app()
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5001)
+
