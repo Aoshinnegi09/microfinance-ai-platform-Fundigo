@@ -1,4 +1,4 @@
-services:
+﻿services:
   db:
     image: postgres:16
     environment:
@@ -6,18 +6,21 @@ services:
       POSTGRES_PASSWORD: microfinance
       POSTGRES_DB: microfinance
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data
       - ./db-init:/docker-entrypoint-initdb.d
-
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U microfinance"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
   ai-engine:
     build: ./ai-engine
     environment:
       - PYTHONUNBUFFERED=1
     ports:
       - "5001:5001"
-
   backend:
     build: ./backend
     environment:
@@ -29,14 +32,17 @@ services:
       JWT_SECRET: replace_with_strong_secret
       AI_ENGINE_URL: http://ai-engine:5001
       UPLOAD_DIR: /app/uploads
+      GROQ_API_KEY: ${GROQ_API_KEY}
+
     volumes:
       - ./backend/uploads:/app/uploads
     ports:
       - "5000:5000"
     depends_on:
-      - db
-      - ai-engine
-
+      db:
+        condition: service_healthy
+      ai-engine:
+        condition: service_started
   payment-processor:
     build: ./payment-processor
     environment:
@@ -48,8 +54,8 @@ services:
     ports:
       - "5002:5002"
     depends_on:
-      - db
-
+      db:
+        condition: service_healthy
   mobile-app:
     build: ./mobile-app
     environment:
@@ -58,8 +64,13 @@ services:
     ports:
       - "5173:5173"
     depends_on:
-      - backend
-      - payment-processor
-
+      backend:
+        condition: service_started
+      payment-processor:
+        condition: service_started
 volumes:
   pg_data:
+
+
+
+

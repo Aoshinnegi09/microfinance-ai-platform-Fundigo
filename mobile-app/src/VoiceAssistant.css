@@ -1,0 +1,67 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@300;400;500;600&display=swap');
+.va-root{background:#231318;border-radius:20px;padding:30px;font-family:'DM Sans',sans-serif;color:#fdf6f0;min-height:420px;position:relative;overflow:hidden}
+.va-root::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(196,120,138,.1) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(155,107,122,.07) 0%,transparent 50%);pointer-events:none}
+.va-header{margin-bottom:28px;position:relative;z-index:1}
+.va-title-row{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.va-icon-glyph{font-size:28px;color:#c4788a}
+.va-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin:0;color:#fdf6f0}
+.va-subtitle{font-size:13px;color:#9b6b7a;margin:2px 0 0}
+.va-lang-pills{display:flex;gap:8px;flex-wrap:wrap}
+.lang-pill{padding:7px 16px;border-radius:100px;border:1px solid rgba(196,120,138,.2);background:rgba(196,120,138,.06);color:#c9a8b2;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s}
+.lang-pill:hover{border-color:rgba(196,120,138,.5);color:#e8a0b0}
+.lang-pill.active{background:rgba(196,120,138,.2);border-color:#c4788a;color:#f2d0d8}
+.va-idle{display:flex;flex-direction:column;align-items:center;gap:28px;padding:12px 0;position:relative;z-index:1}
+.va-orb-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;cursor:pointer}
+.va-orb{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#c4788a,#9b6b7a);display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(196,120,138,.4);transition:transform .2s,box-shadow .2s;cursor:pointer}
+.va-orb:hover{transform:scale(1.06);box-shadow:0 0 60px rgba(196,120,138,.6)}
+.va-orb.listening{background:linear-gradient(135deg,#dc2626,#b91c1c);box-shadow:0 0 40px rgba(220,38,38,.5);animation:pulse-orb 1.2s ease-in-out infinite}
+.va-mic-icon{font-size:32px}
+.va-tap-label{font-size:13px;color:#8a6470}
+@keyframes pulse-orb{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.va-examples{width:100%}
+.va-examples-title{font-size:12px;color:#8a6470;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;font-weight:600}
+.va-example-chips{display:flex;flex-direction:column;gap:8px}
+.va-example-chips span{display:block;padding:11px 16px;border-radius:12px;border:1px solid rgba(196,120,138,.1);background:rgba(196,120,138,.04);font-size:13px;color:#9b6b7a;cursor:pointer;transition:all .2s;font-style:italic}
+.va-example-chips span:hover{background:rgba(196,120,138,.1);border-color:rgba(196,120,138,.3);color:#e8a0b0}
+.va-listening{display:flex;flex-direction:column;align-items:center;gap:20px;position:relative;z-index:1;padding:12px 0}
+.va-wave-container{position:relative;display:flex;align-items:center;justify-content:center;width:140px;height:140px}
+.va-wave-rings{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.ring{position:absolute;border-radius:50%;border:1.5px solid rgba(196,120,138,.3);animation:ring-expand 2s ease-out infinite}
+.ring1{width:100px;height:100px;animation-delay:0s}
+.ring2{width:120px;height:120px;animation-delay:.5s}
+.ring3{width:140px;height:140px;animation-delay:1s}
+@keyframes ring-expand{0%{transform:scale(.8);opacity:.8}100%{transform:scale(1.2);opacity:0}}
+.va-listening-label{font-size:14px;color:#e8a0b0;font-weight:500}
+.va-live-transcript{background:rgba(196,120,138,.06);border:1px solid rgba(196,120,138,.15);border-radius:12px;padding:12px 16px;font-size:14px;color:#c9a8b2;width:100%;max-width:480px;text-align:center;font-style:italic}
+.va-processing{display:flex;flex-direction:column;align-items:center;gap:20px;position:relative;z-index:1;padding:20px 0}
+.va-process-orb{width:90px;height:90px;border-radius:50%;background:rgba(196,120,138,.1);border:1.5px solid rgba(196,120,138,.3);display:flex;align-items:center;justify-content:center;position:relative}
+.process-spin{position:absolute;inset:-4px;border-radius:50%;border:2px solid transparent;border-top-color:#c4788a;border-right-color:rgba(196,120,138,.3);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.va-steps{display:flex;flex-direction:column;gap:10px}
+.va-step{display:flex;align-items:center;gap:10px;font-size:13px;color:#c9a8b2;animation:step-appear .4s ease forwards;opacity:0}
+@keyframes step-appear{to{opacity:1}}
+.step-dot{width:6px;height:6px;border-radius:50%;background:#c4788a;flex-shrink:0}
+.va-result{position:relative;z-index:1}
+.va-result-header{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.va-result-icon{width:42px;height:42px;border-radius:50%;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);display:flex;align-items:center;justify-content:center;color:#10b981;font-size:18px;font-weight:700}
+.va-result-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#fdf6f0;margin:0}
+.va-result-lang{font-size:12px;color:#8a6470;margin:2px 0 0}
+.va-speaking-badge{margin-left:auto;font-size:12px;padding:4px 12px;border-radius:100px;background:rgba(196,120,138,.12);border:1px solid rgba(196,120,138,.25);color:#e8a0b0}
+.va-transcript-box{background:rgba(196,120,138,.05);border:1px solid rgba(196,120,138,.1);border-radius:12px;padding:12px 16px;margin-bottom:14px}
+.vt-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#8a6470;margin:0 0 4px;font-weight:600}
+.vt-text{font-size:14px;color:#c9a8b2;font-style:italic;margin:0}
+.va-ai-message{background:rgba(196,120,138,.08);border:1px solid rgba(196,120,138,.18);border-radius:12px;padding:16px 18px;font-size:14px;color:#e8a0b0;line-height:1.7;margin-bottom:20px}
+.va-loan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+.va-loan-card{background:rgba(196,120,138,.06);border:1px solid rgba(196,120,138,.12);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:5px}
+.va-loan-card.accent{background:rgba(196,120,138,.14);border-color:rgba(196,120,138,.3)}
+.vlc-label{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#8a6470;font-weight:600}
+.vlc-value{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fdf6f0}
+.vlc-sub{font-size:11px;color:#8a6470}
+.va-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-primary-va{padding:12px 24px;border-radius:12px;background:linear-gradient(135deg,#c4788a,#9b6b7a);color:#fff;font-size:14px;font-family:'DM Sans',sans-serif;font-weight:600;border:none;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(196,120,138,.3)}
+.btn-primary-va:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,120,138,.4)}
+.btn-ghost-va{padding:12px 18px;border-radius:12px;background:transparent;color:#9b6b7a;font-size:14px;font-family:'DM Sans',sans-serif;border:1px solid rgba(196,120,138,.2);cursor:pointer;transition:all .2s}
+.btn-ghost-va:hover{background:rgba(196,120,138,.08);color:#c9a8b2}
+.va-error{display:flex;flex-direction:column;align-items:center;gap:16px;padding:32px 0;position:relative;z-index:1;text-align:center}
+.va-error-icon{font-size:36px;color:#ef4444}
+.va-error p{color:#9b6b7a;font-size:14px;max-width:300px;line-height:1.6}
